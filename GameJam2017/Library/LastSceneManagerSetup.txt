@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Alex Scene.unity
-  isLoaded: 1
-  isActive: 1
