@@ -45,31 +45,14 @@ public class UseDoorKeypad : MonoBehaviour, Useable
             Cursor.visible = true;
             player.GetComponentInChildren<Canvas>().enabled = false;
 
-            GameObject prefab = Instantiate(
-                 keypadController.useableKeypadPrefab,
-                  player.transform.position + player.transform.forward,
-                 player.transform.rotation,
-                 this.transform);
+            GameObject prefab = Instantiate(keypadController.useableKeypadPrefab, Camera.main.transform.position + Camera.main.transform.forward * 0.4f , Camera.main.transform.rotation, this.transform);
 
-            Vector3 rot = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, player.transform.eulerAngles.z);
-            Vector3 scale = prefab.gameObject.transform.localScale;
-            Vector3 pos = prefab.gameObject.transform.localPosition;
-
-            Vector3 playerfor = player.transform.forward;
-            playerfor *= 1;
-
-
-            pos.y = -0.4f;
-            pos.x = -2;
-            pos.z = -1;
-
-            //scale = scale / 3;
-
-            //prefab.gameObject.transform.localEulerAngles = rot;
-            prefab.gameObject.transform.localScale = scale;
-            prefab.gameObject.transform.localPosition = pos;
+            Vector3 playerfor = Camera.main.transform.forward;
             prefab.gameObject.transform.right = playerfor;
 
+            Vector3 playerright = Camera.main.transform.right;
+            playerright *= -1;
+            prefab.gameObject.transform.forward = playerright;
 
             // blur screen 
             depthScript.focalTransform = prefab.transform;
