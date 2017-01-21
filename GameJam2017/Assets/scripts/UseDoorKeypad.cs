@@ -25,7 +25,7 @@ public class UseDoorKeypad : MonoBehaviour, Useable
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         playerFPC = player.GetComponent<FirstPersonController>();
         playerConfig = player.GetComponent<PlayerConfig>();
-        keypadController = this.GetComponent<DoorKeypadController>();
+        keypadController = this.gameObject.GetComponent<DoorKeypadController>();
         mainCam = Camera.main;
         depthScript = mainCam.GetComponent<DepthOfField>();
         depthScript.enabled = false;
@@ -43,6 +43,7 @@ public class UseDoorKeypad : MonoBehaviour, Useable
             playerConfig.setIsolatedView(true);
             Debug.Log("Using DoorKeypad");
             Cursor.visible = true;
+            player.GetComponentInChildren<Canvas>().enabled = false;
 
             GameObject prefab = Instantiate(
                 keypadController.useableKeypadPrefab, 
