@@ -33,6 +33,7 @@ public class UseDoorKeypad : MonoBehaviour, Useable
     public void use()
     {
         Debug.Log("Using DoorKeypad");
+        Cursor.visible = true;
         // blur screen 
         // take prefab and instantiate it in center of screen, unblurred
         Instantiate(keypadController.useableKeypadPrefab);

@@ -17,7 +17,9 @@ public class PlayerConfig : MonoBehaviour {
         // Player 'Use' input
         if (Input.GetKeyDown(useKeyBinding))
         {
-            Ray playerForward = new Ray(this.transform.position, this.transform.forward);
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            //Ray playerForward = new Ray(this.transform.position, this.transform.forward);
+            Ray playerForward = new Ray(this.transform.position, fwd);
             RaycastHit hit;
             if (Physics.Raycast(playerForward, out hit, useMaxDistance))
             {
