@@ -41,10 +41,12 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         else if (string.Equals("X", legend, System.StringComparison.OrdinalIgnoreCase)) {
             Debug.Log("Which is X");
             keypadText.setCurrentText(keypadText.getCurrentText() + legend);
+            playerFPC.enabled = true;
         }
         else if (string.Equals("Y", legend, System.StringComparison.OrdinalIgnoreCase)) {
             Debug.Log("Which is Y");
             keypadText.setCurrentText(keypadText.getCurrentText() + legend);
+            playerFPC.enabled = true;
         }
 
 

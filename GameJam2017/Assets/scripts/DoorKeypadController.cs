@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorKeypadController : MonoBehaviour
 {
-
+    public GameObject useableKeypadPrefab;
     public GameObject door;
     public Vector3 doorOpenedPosition;
     public string defaultText = "";
