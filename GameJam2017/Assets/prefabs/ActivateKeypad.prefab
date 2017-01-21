@@ -321,9 +321,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1915173458246432}
-  m_LocalRotation: {x: -0, y: -0.8345342, z: -0, w: 0.5509562}
-  m_LocalPosition: {x: -1.6806, y: 2.78, z: 3.867}
-  m_LocalScale: {x: 0.24104989, y: 0.24104981, z: 0.24104981}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -1.303, y: 1.78, z: 3.814}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 4861924353606200}
   - {fileID: 4005877820969614}
@@ -340,7 +340,7 @@ Transform:
   - {fileID: 4973905380694302}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -113.135, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!4 &4204118578955524
 Transform:
   m_ObjectHideFlags: 1
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
   depthScript: {fileID: 0}
-  aperture: 0.5
+  aperture: 0.6
 --- !u!114 &114712077115466898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -977,7 +977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useableKeypadPrefab: {fileID: 100024, guid: 606bb16c5cb62554d840900211f2bc6a, type: 3}
-  door: {fileID: 0}
+  door: {fileID: 1052141274211082, guid: 1866f454f59faf2488da793001913d82, type: 2}
   doorOpenedPosition: {x: 0, y: 0, z: 0}
   defaultText: 
   solution: 12345
