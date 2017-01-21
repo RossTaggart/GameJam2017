@@ -11,9 +11,6 @@ public class parseJSON
 	public string windSpeedMiles;
 	public string swellHeightM;
 
-	public ArrayList weather_windSpeed;
-	public ArrayList swell_height;
-
 }
 
 
@@ -23,15 +20,9 @@ public class ParseJSONForWavesData : MonoBehaviour {
 	public int swellHeightInMetres;
 	public int frequencyOfWaves;
 
-	public void start(){
-
-
-
-	}
-
 	IEnumerator Start()
 	{
-		string url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=3f9a8089cd4e4a5a821220554172001&format=json&q=45,-2&tp=24";
+		string url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=3f9a8089cd4e4a5a821220554172001&format=json&q=60.155,-1.146&tp=24";
 		WWW www = new WWW(url);
 		yield return www;
 		if (www.error == null)
@@ -70,6 +61,9 @@ public class ParseJSONForWavesData : MonoBehaviour {
 		frequencyOfWaves = UnityEngine.Random.Range(5,25);
 
 		Debug.Log ("frequency: " + frequencyOfWaves.ToString());
+
+		CameraShakeFromWaves cameraShakeFromWaves = GetComponent<CameraShakeFromWaves> ();
+		cameraShakeFromWaves.onEnable (frequencyOfWaves);
 
 	}
 
