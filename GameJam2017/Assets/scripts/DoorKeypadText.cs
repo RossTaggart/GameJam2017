@@ -17,7 +17,7 @@ public class DoorKeypadText : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         playerFPC = player.GetComponent<FirstPersonController>();
         playerConfig = player.GetComponent<PlayerConfig>();
-        keypadController = this.transform.parent.GetComponent<DoorKeypadController>();
+        keypadController = this.gameObject.transform.parent.gameObject.transform.parent.GetComponent<DoorKeypadController>();
         Debug.Log(keypadController);
         currentText = keypadController.defaultText;
         this.GetComponent<TextMesh>().text = currentText;

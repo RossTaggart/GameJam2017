@@ -13,11 +13,12 @@ public class UseDoorKeypad : MonoBehaviour, Useable
 {
     public Camera mainCam;
     public DepthOfField depthScript;
-    public float aperture = 0.5f;
+    public float aperture = 0.4f;
     private DoorKeypadController keypadController;
     private GameObject player;
     private PlayerConfig playerConfig;
     private FirstPersonController playerFPC;
+    public GameObject spotlightObj;
 
     // Use this for initialization
     void Start()
@@ -25,7 +26,7 @@ public class UseDoorKeypad : MonoBehaviour, Useable
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         playerFPC = player.GetComponent<FirstPersonController>();
         playerConfig = player.GetComponent<PlayerConfig>();
-        keypadController = this.GetComponent<DoorKeypadController>();
+        keypadController = this.gameObject.GetComponent<DoorKeypadController>();
         mainCam = Camera.main;
         depthScript = mainCam.GetComponent<DepthOfField>();
         depthScript.enabled = false;
@@ -45,10 +46,27 @@ public class UseDoorKeypad : MonoBehaviour, Useable
             Cursor.visible = true;
 
             GameObject prefab = Instantiate(
-                keypadController.useableKeypadPrefab, 
-                player.transform.forward * keypadController.distanceFromPlayerToUseableKeypad,
+                keypadController.useableKeypadPrefab,
+                 player.transform.position + player.transform.forward,
                 player.transform.rotation, 
                 this.transform);
+
+            Vector3 rot = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, player.transform.eulerAngles.z);
+            Vector3 scale = prefab.gameObject.transform.localScale;
+            Vector3 pos = prefab.gameObject.transform.localPosition;
+
+            Vector3 playerfor = player.transform.forward;
+            playerfor *= 1;
+
+
+            pos.y += 0.5f;
+
+            scale = scale / 3;
+
+            //prefab.gameObject.transform.localEulerAngles = rot;
+            prefab.gameObject.transform.localScale = scale;
+            prefab.gameObject.transform.localPosition = pos;
+            prefab.gameObject.transform.right = playerfor;
 
             // blur screen 
             depthScript.focalTransform = prefab.transform;
