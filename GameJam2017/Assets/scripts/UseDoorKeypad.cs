@@ -42,11 +42,16 @@ public class UseDoorKeypad : MonoBehaviour, Useable
         Debug.Log("Using DoorKeypad");
         Cursor.visible = true;
         // take prefab and instantiate it in center of screen, unblurred
+
         GameObject prefab = Instantiate(keypadController.useableKeypadPrefab);
         // blur screen 
         depthScript.focalTransform = prefab.transform;
         depthScript.aperture = aperture;
         depthScript.enabled = true;
+
+        playerConfig.setCanUse(false);
+        Instantiate(keypadController.useableKeypadPrefab, player.transform.forward * keypadController.distanceFromPlayerToUseableKeypad*5, transform.rotation, this.transform);
+
         // disable player movement
         playerFPC.enabled = false;
     }

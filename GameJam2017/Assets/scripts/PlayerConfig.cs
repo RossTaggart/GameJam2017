@@ -7,15 +7,17 @@ public class PlayerConfig : MonoBehaviour {
     public float useMaxDistance = 5;
     public string useKeyBinding = "e";
     private Vector3 posFrom, posTo;
+    private bool canUse;
 
 	// Use this for initialization
 	void Start () {
         Cursor.visible = false;
+        canUse = true;
 	}
 
     void Update() {
         // Player 'Use' input
-        if (Input.GetKeyDown(useKeyBinding))
+        if (Input.GetKeyDown(useKeyBinding) && canUse)
         {
             Vector3 fwd = transform.TransformDirection(Vector3.forward);
             //Ray playerForward = new Ray(this.transform.position, this.transform.forward);
@@ -34,7 +36,11 @@ public class PlayerConfig : MonoBehaviour {
         }
     }
 	
-	void OnGUI () {
-        
+	public void setCanUse(bool canUse) {
+        this.canUse = canUse;
+    }
+
+    public bool getCanUse() {
+        return this.canUse;
     }
 }

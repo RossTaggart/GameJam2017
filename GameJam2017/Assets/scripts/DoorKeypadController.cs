@@ -9,6 +9,7 @@ public class DoorKeypadController : MonoBehaviour
     public Vector3 doorOpenedPosition;
     public string defaultText = "";
     public string solution = "12345";
+    public float distanceFromPlayerToUseableKeypad = 2.0f;
 
     // Use this for initialization
     void Start()
