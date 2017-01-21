@@ -33,6 +33,8 @@ public class PlayerConfig : MonoBehaviour {
                     }
                 }
             }
+        } else if(Input.GetMouseButtonDown(0) && isIsolatedView()) {
+
         }
     }
 	
