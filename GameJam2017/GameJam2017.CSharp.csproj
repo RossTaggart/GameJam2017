@@ -94,6 +94,8 @@
     <Compile Include="Assets\scripts\PlayerConfig.cs" />
     <Compile Include="Assets\scripts\UseDoorKeypad.cs" />
     <Compile Include="Assets\scripts\UseDoorKeypadButton.cs" />
+    <Compile Include="Assets\scripts\networkScript.cs" />
+    <Compile Include="Assets\scripts\networkSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />

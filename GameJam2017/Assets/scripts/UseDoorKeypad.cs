@@ -13,7 +13,7 @@ public class UseDoorKeypad : MonoBehaviour, Useable
 {
     public Camera mainCam;
     public DepthOfField depthScript;
-    public float aperture = 0.5f;
+    public float aperture = 0.6f;
     private DoorKeypadController keypadController;
     private GameObject player;
     private PlayerConfig playerConfig;
@@ -45,11 +45,14 @@ public class UseDoorKeypad : MonoBehaviour, Useable
             Cursor.visible = true;
             player.GetComponentInChildren<Canvas>().enabled = false;
 
-            GameObject prefab = Instantiate(
-                keypadController.useableKeypadPrefab, 
-                player.transform.forward * keypadController.distanceFromPlayerToUseableKeypad,
-                player.transform.rotation, 
-                this.transform);
+            GameObject prefab = Instantiate(keypadController.useableKeypadPrefab, Camera.main.transform.position + Camera.main.transform.forward * 0.4f , Camera.main.transform.rotation, this.transform);
+
+            Vector3 playerfor = Camera.main.transform.forward;
+            prefab.gameObject.transform.right = playerfor;
+
+            Vector3 playerright = Camera.main.transform.right;
+            playerright *= -1;
+            prefab.gameObject.transform.forward = playerright;
 
             // blur screen 
             depthScript.focalTransform = prefab.transform;
