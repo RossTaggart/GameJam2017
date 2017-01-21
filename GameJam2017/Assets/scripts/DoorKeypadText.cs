@@ -17,8 +17,7 @@ public class DoorKeypadText : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         playerFPC = player.GetComponent<FirstPersonController>();
         playerConfig = player.GetComponent<PlayerConfig>();
-        keypadController = this.transform.parent.GetComponent<DoorKeypadController>();
-        Debug.Log(keypadController);
+        keypadController = this.gameObject.transform.parent.gameObject.transform.parent.GetComponent<DoorKeypadController>();
         currentText = keypadController.defaultText;
         this.GetComponent<TextMesh>().text = currentText;
     }
@@ -43,6 +42,7 @@ public class DoorKeypadText : MonoBehaviour
             // open door
             keypadController.door.transform.position = keypadController.doorOpenedPosition;
             // door.open()
+            Destroy(this.transform.parent.gameObject);
         } else {
             // play failure sound
         }

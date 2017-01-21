@@ -19,9 +19,8 @@ public class PlayerConfig : MonoBehaviour {
         // Player 'Use' input
         if (Input.GetKeyDown(useKeyBinding) && !isolatedView)
         {
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
-            //Ray playerForward = new Ray(this.transform.position, this.transform.forward);
-            Ray playerForward = new Ray(this.transform.position, fwd);
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.green);
+            Ray playerForward = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(playerForward, out hit, useMaxDistance))
             {
@@ -34,11 +33,21 @@ public class PlayerConfig : MonoBehaviour {
                 }
             }
         } else if(Input.GetMouseButtonDown(0) && isIsolatedView()) {
-
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(mouseRay, out hit, useMaxDistance)) {
+                foreach (Component component in hit.collider.gameObject.GetComponents(typeof(Component)))
+                {
+                    if (component is Useable)
+                    {
+                        (component as Useable).use();
+                    }
+                }
+            }
         }
     }
-	
-	public void setIsolatedView(bool canUse) {
+
+    public void setIsolatedView(bool canUse) {
         this.isolatedView = canUse;
     }
 
