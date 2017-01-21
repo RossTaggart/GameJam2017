@@ -50,14 +50,14 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
             //when you want to disable the depth of field, use this line
             depthScript.enabled = false;
             Destroy(transform.parent.gameObject);
-            playerConfig.setCanUse(true);
+            playerConfig.setIsolatedView(false);
         }
         else if (string.Equals("Y", legend, System.StringComparison.OrdinalIgnoreCase)) {
             Debug.Log("Which is Y");
             keypadText.setCurrentText(keypadText.getCurrentText() + legend);
             // destroy prefab if key is correct
             playerFPC.enabled = true;
-            playerConfig.setCanUse(true);
+            playerConfig.setIsolatedView(true);
         }
 
 

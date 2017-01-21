@@ -11,13 +11,13 @@ public interface Useable
 
 public class UseDoorKeypad : MonoBehaviour, Useable
 {
+    public Camera mainCam;
+    public DepthOfField depthScript;
+    public float aperture = 0.5f;
     private DoorKeypadController keypadController;
     private GameObject player;
     private PlayerConfig playerConfig;
     private FirstPersonController playerFPC;
-    public Camera mainCam;
-    public DepthOfField depthScript;
-    public float aperture = 0.5f;
 
     // Use this for initialization
     void Start()
@@ -39,21 +39,25 @@ public class UseDoorKeypad : MonoBehaviour, Useable
 
     public void use()
     {
-        Debug.Log("Using DoorKeypad");
-        Cursor.visible = true;
-        // take prefab and instantiate it in center of screen, unblurred
+        if(!playerConfig.isIsolatedView()) {
+            playerConfig.setIsolatedView(true);
+            Debug.Log("Using DoorKeypad");
+            Cursor.visible = true;
 
-        GameObject prefab = Instantiate(keypadController.useableKeypadPrefab);
-        // blur screen 
-        depthScript.focalTransform = prefab.transform;
-        depthScript.aperture = aperture;
-        depthScript.enabled = true;
+            GameObject prefab = Instantiate(
+                keypadController.useableKeypadPrefab, 
+                player.transform.forward * keypadController.distanceFromPlayerToUseableKeypad,
+                player.transform.rotation, 
+                this.transform);
 
-        playerConfig.setCanUse(false);
-        Instantiate(keypadController.useableKeypadPrefab, player.transform.forward * keypadController.distanceFromPlayerToUseableKeypad*5, transform.rotation, this.transform);
+            // blur screen 
+            depthScript.focalTransform = prefab.transform;
+            depthScript.aperture = aperture;
+            depthScript.enabled = true;
 
-        // disable player movement
-        playerFPC.enabled = false;
+            // disable player movement
+            playerFPC.enabled = false;
+        }
     }
 
     void OnGUI()
