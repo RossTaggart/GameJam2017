@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityStandardAssets.ImageEffects;
 
 public class UseDoorKeypadButton : MonoBehaviour, Useable
 {
@@ -13,6 +14,8 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
     private Regex zeroToNine;
     private DoorKeypadText keypadText;
     private TextMesh keypadTextMesh;
+    public Camera mainCam;
+    public DepthOfField depthScript;
 
     // Use this for initialization
     void Start()
@@ -23,6 +26,8 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         zeroToNine = new Regex("^[0-9]+$");
         keypadText = transform.parent.GetComponentInChildren<DoorKeypadText>();
         keypadTextMesh = keypadText.gameObject.GetComponent<TextMesh>();
+        mainCam = Camera.main;
+        depthScript = mainCam.GetComponent<DepthOfField>();
     }
 
     // Update is called once per frame
@@ -42,6 +47,8 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
             Debug.Log("Which is X");
             keypadText.setCurrentText(keypadText.getCurrentText() + legend);
             playerFPC.enabled = true;
+            //when you want to disable the depth of field, use this line
+            depthScript.enabled = false;
             Destroy(transform.parent.gameObject);
         }
         else if (string.Equals("Y", legend, System.StringComparison.OrdinalIgnoreCase)) {

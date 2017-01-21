@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityStandardAssets.ImageEffects;
 
 public interface Useable
 {
@@ -14,6 +15,9 @@ public class UseDoorKeypad : MonoBehaviour, Useable
     private GameObject player;
     private PlayerConfig playerConfig;
     private FirstPersonController playerFPC;
+    public Camera mainCam;
+    public DepthOfField depthScript;
+    public float aperture = 0.5f;
 
     // Use this for initialization
     void Start()
@@ -22,6 +26,9 @@ public class UseDoorKeypad : MonoBehaviour, Useable
         playerFPC = player.GetComponent<FirstPersonController>();
         playerConfig = player.GetComponent<PlayerConfig>();
         keypadController = this.GetComponent<DoorKeypadController>();
+        mainCam = Camera.main;
+        depthScript = mainCam.GetComponent<DepthOfField>();
+        depthScript.enabled = false;
     }
 
     // Update is called once per frame
@@ -34,9 +41,12 @@ public class UseDoorKeypad : MonoBehaviour, Useable
     {
         Debug.Log("Using DoorKeypad");
         Cursor.visible = true;
-        // blur screen 
         // take prefab and instantiate it in center of screen, unblurred
-        Instantiate(keypadController.useableKeypadPrefab);
+        GameObject prefab = Instantiate(keypadController.useableKeypadPrefab);
+        // blur screen 
+        depthScript.focalTransform = prefab.transform;
+        depthScript.aperture = aperture;
+        depthScript.enabled = true;
         // disable player movement
         playerFPC.enabled = false;
     }
