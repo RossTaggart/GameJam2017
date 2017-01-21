@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class DoorKeypadText : MonoBehaviour, Useable
+public class DoorKeypadText : MonoBehaviour
 {
+    private DoorKeypadController keypadController;
+    private string currentText;
     private GameObject player;
-    public string defaultText = "0000";
     private PlayerConfig playerConfig;
     private FirstPersonController playerFPC;
-    private UseDoorKeypad keypad;
 
     // Use this for initialization
     void Start()
@@ -17,24 +17,38 @@ public class DoorKeypadText : MonoBehaviour, Useable
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         playerFPC = player.GetComponent<FirstPersonController>();
         playerConfig = player.GetComponent<PlayerConfig>();
-        keypad = this.transform.parent.GetComponent<UseDoorKeypad>();
+        keypadController = this.transform.parent.GetComponent<DoorKeypadController>();
+        currentText = keypadController.defaultText;
+        this.GetComponent<TextMesh>().text = currentText;
     }
 
     // Update is called once per frame
     void Update()
     {
+        this.GetComponent<TextMesh>().text = currentText;
+    }
+
+    public string getCurrentText() {
+        return currentText;
+    }
+
+    public void setCurrentText(string newText) {
+        currentText = newText;
+    }
+
+    public void confirm() {
+        if(currentText == keypadController.solution) {
+            // play success sound
+            // open door
+            keypadController.door.transform.position = keypadController.doorOpenedPosition;
+            // door.open()
+        } else {
+            // play failure sound
+        }
 
     }
 
-    public void use()
-    {
-        Debug.Log("Using DoorKeypad");
-        
-    }
-
-    void OnGUI()
-    {
-
-
+    public void cancel() {
+        currentText = keypadController.defaultText;
     }
 }

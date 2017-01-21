@@ -6,10 +6,11 @@ public class PlayerConfig : MonoBehaviour {
 
     public float useMaxDistance = 5;
     public string useKeyBinding = "e";
+    private Vector3 posFrom, posTo;
 
 	// Use this for initialization
 	void Start () {
-
+        
 	}
 
     void Update() {
