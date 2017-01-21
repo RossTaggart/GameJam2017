@@ -5,21 +5,13 @@ using UnityEngine;
 public class DoorKeypadController : MonoBehaviour
 {
     public GameObject useableKeypadPrefab;
-    public GameObject door;
-    public Vector3 doorOpenedPosition;
+    public Door door;
     public string defaultText = "";
     public string solution = "12345";
     public float distanceFromPlayerToUseableKeypad = 2.0f;
+    private bool doorOpen;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+    public bool isDoorOpen() {
+        return door.isOpen();
     }
 }
