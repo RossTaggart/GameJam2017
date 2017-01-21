@@ -16,6 +16,7 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
     private TextMesh keypadTextMesh;
     public Camera mainCam;
     public DepthOfField depthScript;
+    public DoorKeypadController keypadController;
 
     // Use this for initialization
     void Start()
@@ -28,12 +29,30 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         keypadTextMesh = keypadText.gameObject.GetComponent<TextMesh>();
         mainCam = Camera.main;
         depthScript = mainCam.GetComponent<DepthOfField>();
+        keypadController = this.gameObject.transform.parent.parent.GetComponent<DoorKeypadController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!keypadController.isDoorOpen()) {
+            checkKeyValidity();
+        }
+    }
 
+    public void leaveIsolatedView(bool success) {
+        playerFPC.enabled = true;
+        //when you want to disable the depth of field, use this line
+        depthScript.enabled = false;
+        Destroy(transform.parent.gameObject);
+        playerConfig.setIsolatedView(false);
+        player.GetComponentInChildren<Canvas>().enabled = true;
+        if (success) {
+            keypadText.confirm();
+        } else {
+            keypadText.cancel();
+        }
+        Destroy(this.gameObject.transform.parent);
     }
 
     public void use()
@@ -42,15 +61,7 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         Debug.Log("Using DoorKeypad key " + legend);
         if (string.Equals("X", legend, System.StringComparison.OrdinalIgnoreCase)) {
             Debug.Log("Which is X");
-            keypadText.setCurrentText(keypadText.getCurrentText() + legend);
-            playerFPC.enabled = true;
-            //when you want to disable the depth of field, use this line
-            depthScript.enabled = false;
-            Destroy(transform.parent.gameObject);
-            playerConfig.setIsolatedView(false);
-            player.GetComponentInChildren<Canvas>().enabled = true;
-            keypadText.cancel();
-            Destroy(this.gameObject.transform.parent);
+            leaveIsolatedView(false);
         }
         else if (string.Equals("Y", legend, System.StringComparison.OrdinalIgnoreCase)) {
             Debug.Log("Which is Y");
@@ -75,9 +86,19 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
 
     }
 
-    void OnGUI()
-    {
-
-
+    private void checkKeyValidity() {
+        if (keypadText.getCurrentText() == keypadController.solution) {
+            keypadController.setDoorOpen(true);
+            DoorKeypadText[] useableKeypads = keypadController.gameObject.GetComponentsInChildren<DoorKeypadText>();
+            if (useableKeypads.Length > 0)
+            {
+                foreach (DoorKeypadText keypadText in useableKeypads)
+                {
+                    Destroy(keypadText.transform.parent.gameObject);
+                }
+            }
+        } else {
+            keypadController.setDoorOpen(false);
+        }
     }
 }

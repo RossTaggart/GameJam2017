@@ -23,9 +23,11 @@ public class DoorKeypadText : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        this.GetComponent<TextMesh>().text = currentText;
+        this.GetComponent<TextMesh>().text = "123";
+        Debug.Log(currentText);
+        //this.GetComponent<TextMesh>().text = currentText;
     }
 
     public string getCurrentText() {

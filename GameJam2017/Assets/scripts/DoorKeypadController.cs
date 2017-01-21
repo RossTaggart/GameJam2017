@@ -10,16 +10,19 @@ public class DoorKeypadController : MonoBehaviour
     public string defaultText = "";
     public string solution = "12345";
     public float distanceFromPlayerToUseableKeypad = 2.0f;
+    private bool doorOpen;
 
     // Use this for initialization
     void Start()
     {
-
+        doorOpen = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public void setDoorOpen(bool doorOpen) {
+        this.doorOpen = doorOpen;
+    }
 
+    public bool isDoorOpen() {
+        return this.doorOpen;
     }
 }

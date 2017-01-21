@@ -45,7 +45,10 @@ public class UseDoorKeypad : MonoBehaviour, Useable
             Cursor.visible = true;
             player.GetComponentInChildren<Canvas>().enabled = false;
 
-            GameObject prefab = Instantiate(keypadController.useableKeypadPrefab, Camera.main.transform.position + Camera.main.transform.forward * 0.4f , Camera.main.transform.rotation, this.transform);
+            GameObject prefab = Instantiate(keypadController.useableKeypadPrefab, 
+                Camera.main.transform.position + Camera.main.transform.forward * 0.4f, 
+                Camera.main.transform.rotation, 
+                this.transform);
 
             Vector3 playerfor = Camera.main.transform.forward;
             prefab.gameObject.transform.right = playerfor;
