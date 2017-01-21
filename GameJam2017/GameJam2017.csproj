@@ -91,6 +91,7 @@
     <Compile Include="Assets\scripts\DeathTimer.cs" />
     <Compile Include="Assets\scripts\DoorKeypadController.cs" />
     <Compile Include="Assets\scripts\DoorKeypadText.cs" />
+    <Compile Include="Assets\scripts\EnemyPatrolScript.cs" />
     <Compile Include="Assets\scripts\MicrophoneScript.cs" />
     <Compile Include="Assets\scripts\PlayerConfig.cs" />
     <Compile Include="Assets\scripts\SightScript.cs" />
