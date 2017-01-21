@@ -976,8 +976,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed84e9ba3cde7f46a827c9e34734521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useableKeypadPrefab: {fileID: 100024, guid: 606bb16c5cb62554d840900211f2bc6a, type: 3}
-  door: {fileID: 1052141274211082, guid: 1866f454f59faf2488da793001913d82, type: 2}
+  useableKeypadPrefab: {fileID: 1052141274211082, guid: 1866f454f59faf2488da793001913d82,
+    type: 2}
+  door: {fileID: 1668770321387482, guid: f2454f7533ba93e43846e9d3423ab6dd, type: 2}
   doorOpenedPosition: {x: 0, y: 0, z: 0}
   defaultText: 
   solution: 12345
