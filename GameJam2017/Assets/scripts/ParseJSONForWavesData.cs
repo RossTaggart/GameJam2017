@@ -33,8 +33,10 @@ public class ParseJSONForWavesData : MonoBehaviour {
 		}
 		else
 		{
-			Debug.Log("Error: " + www.error);
-		}
+            CameraShakeFromWaves cameraShakeFromWaves = GetComponent<CameraShakeFromWaves>();
+            cameraShakeFromWaves.onEnable(20);
+            Debug.Log("Error: " + www.error);
+        }
 	}
 	private void Processjson(string jsonString)
 	{

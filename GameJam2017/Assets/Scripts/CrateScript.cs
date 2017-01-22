@@ -2,40 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrateScript : MonoBehaviour {
+public class CrateScript : MonoBehaviour
+{
     public GameObject startingWaypoint;
     public GameObject endingWaypoint;
-    public float timer = 5;
     public float speed = 10;
+    public bool towardsEnd = true;
+    public bool triggered = false;
+    public bool moveCompleted = false;
 
-    private bool moveCompleted = false;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         this.transform.position = new Vector3(startingWaypoint.transform.position.x,this.transform.position.y, startingWaypoint.transform.position.z);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(moveCompleted == false)
+	void Update ()
+    {
+		if(!moveCompleted)
         {
-            timer -= (1 * Time.deltaTime);
-            float movespeed = (speed * Time.deltaTime);
-            if(timer <=0)
+            if (triggered)
             {
-                Debug.Log("Entered");
-                timer = 0;
-                this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(endingWaypoint.transform.position.x, this.transform.position.y, endingWaypoint.transform.position.z), movespeed);
+                if (towardsEnd)
+                {
+                    float movespeed = (speed * Time.deltaTime);
+                    Debug.Log("Entered");
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(endingWaypoint.transform.position.x, this.transform.position.y, endingWaypoint.transform.position.z), movespeed);
+                }
+                else
+                {
+                    float movespeed = (speed * Time.deltaTime);
+                    Debug.Log("Entered");
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(startingWaypoint.transform.position.x, this.transform.position.y, startingWaypoint.transform.position.z), movespeed);
+                }
             }
-
         }
-
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if(collision.collider.tag == "EndPoint")
+        if (towardsEnd)
         {
-            moveCompleted = true;
+            if (collision.gameObject.tag == "EndPoint")
+            {
+                moveCompleted = true;
+                triggered = false;
+                towardsEnd = false;
+            }
         }
+        else
+        {
+            if (collision.gameObject.tag == "StartPoint")
+            {
+                moveCompleted = true;
+                triggered = false;
+                towardsEnd = true;
+            }
+        }
+    }
+
+    public void triggerme()
+    {
+        triggered = true;
+        moveCompleted = false;
+        Debug.Log("setting triggered true");
     }
 }

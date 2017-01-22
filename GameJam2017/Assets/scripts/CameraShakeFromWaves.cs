@@ -16,8 +16,12 @@ public class CameraShakeFromWaves : MonoBehaviour {
 	public int delayBetweenShakes = 0;
 	public float timeSinceLastShake = 0.0f;
 
-	//enables the script. traditional script enabling just straight up wasn't working
-	public bool enabledScript=false;
+    public bool triggered = false;
+
+    public CrateScript[] crates;
+
+    //enables the script. traditional script enabling just straight up wasn't working
+    public bool enabledScript=false;
 
 	Vector3 originalPos;
 
@@ -38,9 +42,11 @@ public class CameraShakeFromWaves : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//CameraShakeFromWaves cameraShakeFromWaves = GetComponent<CameraShakeFromWaves> ();
-		//cameraShakeFromWaves.enabledScript= false;
-	}
+        //CameraShakeFromWaves cameraShakeFromWaves = GetComponent<CameraShakeFromWaves> ();
+        //cameraShakeFromWaves.enabledScript= false;
+
+         crates = FindObjectsOfType<CrateScript>();
+    }
 	 
 	// Update is called once per frame
 	void Update () {
@@ -48,17 +54,26 @@ public class CameraShakeFromWaves : MonoBehaviour {
 			if (shakeDuration > 0 && Mathf.RoundToInt (timeSinceLastShake) > delayBetweenShakes) {
 
 				Debug.Log ("shake triggered");
-				camTransform.localPosition = originalPos + UnityEngine.Random.insideUnitSphere * shakeAmount;
+                if (!triggered)
+                {
+                    foreach(CrateScript crate in crates)
+                    {
+                        crate.triggerme();
+                    }
+                    triggered = true;
+                }
+                camTransform.localPosition = originalPos + new Vector3(UnityEngine.Random.insideUnitCircle.x, originalPos.y, originalPos.z) * shakeAmount;
 
-				shakeDuration -= Time.deltaTime * decreateFactor;
+                shakeDuration -= Time.deltaTime * decreateFactor;
 			} else if (shakeDuration <= 0 && Mathf.RoundToInt (timeSinceLastShake) > delayBetweenShakes) {
 				shakeDuration = 0.0f;
-				camTransform.localPosition = originalPos;
-
+                camTransform.localPosition = originalPos;
+                triggered = false;
 				timeSinceLastShake = 0.0f;
 			} else {
 				shakeDuration = 3.0f;
-				timeSinceLastShake += Time.deltaTime;
+                triggered = false;
+                timeSinceLastShake += Time.deltaTime;
 			}
 		}
 	}
