@@ -5,10 +5,12 @@ using UnityEngine;
 public class triggerending : MonoBehaviour
 {
 
+    public AudioSource aud;
+
 	// Use this for initialization
 	void Start ()
     {
-		
+        aud = this.gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,7 @@ public class triggerending : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             this.gameObject.transform.parent.GetComponentInChildren<BrianScript>().switchToEndGame();
+            aud.Play();
         }
     }
 }
