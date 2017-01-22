@@ -51,9 +51,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -68,9 +65,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -95,6 +89,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BrianScript.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\DontDestroy.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\EventSystemChecker.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\Pause.cs" />
@@ -103,6 +98,8 @@
     <Compile Include="Assets\Game Jam Template\Scripts\SetAudioLevels.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\ShowPanels.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\StartOptions.cs" />
+    <Compile Include="Assets\changeColour.cs" />
+    <Compile Include="Assets\exitbutton.cs" />
     <Compile Include="Assets\scripts\CameraShakeFromWaves.cs" />
     <Compile Include="Assets\scripts\CrateScript.cs" />
     <Compile Include="Assets\scripts\DeathTimer.cs" />
@@ -116,6 +113,7 @@
     <Compile Include="Assets\scripts\UseDoorKeypadButton.cs" />
     <Compile Include="Assets\scripts\networkScript.cs" />
     <Compile Include="Assets\scripts\networkSetup.cs" />
+    <Compile Include="Assets\triggerending.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game Jam Template\Fonts\OpenSans\License!.txt" />

@@ -1,0 +1,49 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 21.01.2017 13:03:08
+
+newmtl Material__25
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\nikol\Downloads\Brian-cutout.png
+	map_Kd C:\Users\nikol\Downloads\Brian-cutout.png
+	map_d C:\Users\nikol\Downloads\Brian-cutout_alpha.png
+	map_bump C:\Users\nikol\Downloads\Brian-cutout_bump-map.png
+	bump C:\Users\nikol\Downloads\Brian-cutout_bump-map.png
+
+newmtl Material__27
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\nikol\Downloads\Brian-cutout_inverse.png
+	map_Kd C:\Users\nikol\Downloads\Brian-cutout_inverse.png
+	map_d C:\Users\nikol\Downloads\Brian-cutout_alpha_inverse.png
+	map_bump C:\Users\nikol\Downloads\Brian-cutout_bump-map_inverse.png
+	bump C:\Users\nikol\Downloads\Brian-cutout_bump-map_inverse.png
+
+newmtl Material__52
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_d C:\Users\nikol\Downloads\black_20square_small.jpg

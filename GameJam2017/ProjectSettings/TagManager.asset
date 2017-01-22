@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - EndPoint
+  - endgame
+  - endpanel
   layers:
   - Default
   - TransparentFX

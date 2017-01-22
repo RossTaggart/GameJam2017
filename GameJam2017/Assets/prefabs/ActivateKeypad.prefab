@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4973905380694302}
   - component: {fileID: 33609628488176460}
   - component: {fileID: 23779863267592866}
+  - component: {fileID: 114305739260058486}
   m_Layer: 0
   m_Name: PanelBody
   m_TagString: Untagged
@@ -321,8 +322,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1915173458246432}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.303, y: 1.78, z: 3.814}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.22817993, y: 1.2169778, z: -0.3555374}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 4861924353606200}
@@ -706,7 +707,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8bbafe6ecba8517498b263e9473e9c9f, type: 2}
+  - {fileID: 2100000, guid: a93f958496d87ba4f8085ca35466e9b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -951,6 +952,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.72, y: 2.63, z: 2.14}
   m_Center: {x: 0.77, y: 0.45, z: 0}
+--- !u!114 &114305739260058486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1069107159899154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d385d7da481dad439d9640bc1fffed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  green: {fileID: 2100000, guid: e46af897ac4141c428b07ea3e1a1164e, type: 2}
+  red: {fileID: 2100000, guid: a93f958496d87ba4f8085ca35466e9b1, type: 2}
 --- !u!114 &114648674099923014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -978,8 +992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useableKeypadPrefab: {fileID: 1052141274211082, guid: 1866f454f59faf2488da793001913d82,
     type: 2}
-  door: {fileID: 1668770321387482, guid: f2454f7533ba93e43846e9d3423ab6dd, type: 2}
-  doorOpenedPosition: {x: 0, y: 0, z: 0}
+  door: {fileID: 0}
   defaultText: 
-  solution: 12345
+  solution: 0000
   distanceFromPlayerToUseableKeypad: 2

@@ -24,6 +24,7 @@ public class Door : MonoBehaviour {
     public void open() {
         if (openPosition != null) {
             this.transform.position = openPosition;
+            doorOpened = true;
         } else {
             Debug.LogError("the openPosition of the door is null");
         }

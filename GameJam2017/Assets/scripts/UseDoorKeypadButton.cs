@@ -17,6 +17,8 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
     public Camera mainCam;
     private DepthOfField depthScript;
     public DoorKeypadController keypadController;
+    public AudioClip win, failure, press;
+    private AudioSource source;
 
     // Use this for initialization
     void Start()
@@ -29,6 +31,7 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         mainCam = Camera.main;
         depthScript = mainCam.GetComponent<DepthOfField>();
         keypadController = this.gameObject.transform.parent.parent.GetComponent<DoorKeypadController>();
+        source = this.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,8 +51,15 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         player.GetComponentInChildren<Canvas>().enabled = true;
         Cursor.visible = false;
         if (success) {
+            source.clip = win;
+            source.loop = false;
+            source.Play();
             keypadText.confirm();
+
         } else {
+            source.clip = failure;
+            source.loop = false;
+            source.Play();
             keypadText.cancel();
         }
         Destroy(this.gameObject.transform.parent);
@@ -73,6 +83,9 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
             if (i >= 0 && 9 >= i) { 
                 Debug.Log("Which is a number");
                 keypadText.setCurrentText(keypadText.getCurrentText() + legend);
+                source.clip = press;
+                source.loop = false;
+                source.Play();
             } else {
                 Debug.Log(i);
                 Debug.LogError("invalid keypad number");
