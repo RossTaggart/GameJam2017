@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityStandardAssets.ImageEffects;
-
+ 
 public class UseDoorKeypadButton : MonoBehaviour, Useable
 {
     private GameObject player;
@@ -19,7 +19,7 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
     public DoorKeypadController keypadController;
     public AudioClip win, failure, press;
     private AudioSource source;
-
+ 
     // Use this for initialization
     void Start()
     {
@@ -33,16 +33,13 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         keypadController = this.gameObject.transform.parent.parent.GetComponent<DoorKeypadController>();
         source = this.gameObject.GetComponent<AudioSource>();
     }
-
+ 
     // Update is called once per frame
     void Update()
     {
-        if (!keypadController.isDoorOpen()) {
-            checkKey();
-            checkKeyValidity();
-        }
+        validateKey();
     }
-
+ 
     public void leaveIsolatedView(bool success) {
         playerFPC.enabled = true;
         depthScript.enabled = false;
@@ -55,7 +52,7 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
             source.loop = false;
             source.Play();
             keypadText.confirm();
-
+ 
         } else {
             source.clip = failure;
             source.loop = false;
@@ -64,7 +61,7 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
         }
         Destroy(this.gameObject.transform.parent);
     }
-
+ 
     public void use()
     {
         int i;
@@ -74,13 +71,13 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
             leaveIsolatedView(false);
         }
         else if (string.Equals("Y", legend, System.StringComparison.OrdinalIgnoreCase)) {
-            keypadText.setCurrentText(keypadText.getCurrentText() + legend);
+            verifyKey();
             // destroy prefab if key is correct
             leaveIsolatedView(true);
         }
         else if (int.TryParse(legend, out i))
         {
-            if (i >= 0 && 9 >= i) { 
+            if (i >= 0 && 9 >= i) {
                 Debug.Log("Which is a number");
                 keypadText.setCurrentText(keypadText.getCurrentText() + legend);
                 source.clip = press;
@@ -91,11 +88,15 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
                 Debug.LogError("invalid keypad number");
             }
         }
-
+ 
     }
-
-    private void checkKeyValidity() {
+ 
+    private void verifyKey() {
+        Debug.Log("verifying key");
+        Debug.Log(keypadText.getCurrentText());
+        Debug.Log(keypadController.solution);
         if (keypadText.getCurrentText() == keypadController.solution) {
+            Debug.Log("key is correct");
             keypadText.confirm();
             DoorKeypadText[] useableKeypads = keypadController.gameObject.GetComponentsInChildren<DoorKeypadText>();
             if (useableKeypads.Length > 0)
@@ -107,14 +108,12 @@ public class UseDoorKeypadButton : MonoBehaviour, Useable
             }
         }
     }
-
-    private void checkKey() {
-        checkKeyValidity();
+ 
+    private void validateKey() {
         Debug.Log("keypadText.getCurrentText().Length = " + keypadText.getCurrentText().Length);
         Debug.Log("keypadController.solution.Length = " + keypadController.solution.Length);
         if (keypadText.getCurrentText().Length > keypadController.solution.Length) {
-            keypadText.cancel();
-            depthScript.enabled = false;
+            keypadText.setCurrentText("");
         }
     }
 }
