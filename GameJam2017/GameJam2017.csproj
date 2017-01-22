@@ -96,6 +96,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BrianScript.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\DontDestroy.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\EventSystemChecker.cs" />
     <Compile Include="Assets\Game Jam Template\Scripts\Pause.cs" />
@@ -117,6 +118,9 @@
     <Compile Include="Assets\Scripts\UseDoorKeypadButton.cs" />
     <Compile Include="Assets\Scripts\networkScript.cs" />
     <Compile Include="Assets\Scripts\networkSetup.cs" />
+    <Compile Include="Assets\changeColour.cs" />
+    <Compile Include="Assets\exitbutton.cs" />
+    <Compile Include="Assets\triggerending.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game Jam Template\Fonts\OpenSans\License!.txt" />
